@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  env: {
+    SERVER_BASE_URL: process.env.SERVER_BASE_URL,
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
