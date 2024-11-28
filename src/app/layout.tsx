@@ -1,13 +1,22 @@
-import type { Metadata } from "next";
+"use client";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import { Bangers } from "next/font/google";
+import { Bangers, Tinos } from "next/font/google";
+import BottomBar from "./components/BottomBar";
+import { useEffect } from "react";
+import { updateVisitCount } from "@/api/articles";
 
 const bangers = Bangers({
-  subsets: ["latin"], // Specify the required subset
-  weight: "400", // Bangers only supports 400 weight
-  variable: "--font-bangers", // CSS variable for easier Tailwind integration
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-bangers",
+});
+
+const tinos = Tinos({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-tinos",
 });
 
 const geistSans = localFont({
@@ -21,25 +30,31 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "NewsRead",
-  description: "",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useEffect(() => {
+    window.addEventListener("beforeunload", async () => {
+      const visitData = JSON.parse(localStorage.getItem("visitCounts")!) || {};
+      updateVisitCount(visitData);
+
+      localStorage.removeItem("visitCounts");
+    });
+  });
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${bangers.variable} antialiased max-h-screen overflow-y-hidden h-screen flex flex-col justify-between`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bangers.variable} ${tinos.variable} w-full antialiased max-h-screen overflow-y-hidden h-screen flex flex-col justify-between bg-gray-50`}
       >
+        <title>NewsRead</title>
         <div className="py-4 flex justify-center bg-white border-b">
           <Navbar />
         </div>
         <div className="flex-1 overflow-y-auto">{children}</div>
+
+        <BottomBar />
       </body>
     </html>
   );

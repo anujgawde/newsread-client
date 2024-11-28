@@ -8,7 +8,10 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: { bangers: ["var(--font-bangers)", "cursive"] },
+      fontFamily: {
+        bangers: ["var(--font-bangers)", "cursive"],
+        tinos: ["var(--font-tinos)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

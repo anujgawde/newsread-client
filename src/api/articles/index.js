@@ -6,9 +6,8 @@ const api = axios.create({
 
 export const getLatestArticles = async () => {
   try {
-    const response = await api.get(`/articles/`);
-    console.log("inside", response);
-    return response.data.articles;
+    const response = await api.get(`/articles/get-all-articles`);
+    return response.data;
   } catch (error) {
     console.error("Error fetching user data:", error);
     throw error;
@@ -22,4 +21,20 @@ export const readArticle = async (id) => {
     console.error("Error fetching user data:", error);
     throw error;
   }
+};
+
+export const getArticleById = async (articlId) => {
+  try {
+    const response = await api.get(`/articles/${articlId}`);
+    return response.data;
+  } catch (e) {}
+};
+
+export const updateVisitCount = async (visitData) => {
+  try {
+    const response = await api.post(
+      `/articles/update-article-visits`,
+      visitData
+    );
+  } catch (e) {}
 };

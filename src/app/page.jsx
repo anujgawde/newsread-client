@@ -11,23 +11,19 @@ export default function AllNewsPage() {
   // Functions:
   const fetchLatestArticles = async () => {
     const latestArticlesResult = await getLatestArticles();
-    setArticles(latestArticlesResult);
-  };
-
-  const readArticleHandler = async (id) => {
-    const readArticleResponse = await readArticle(id);
-    const articleAudio = new Audio(readArticleResponse);
-    articleAudio.play();
+    setArticles(latestArticlesResult.articles);
   };
 
   useEffect(() => {
     fetchLatestArticles();
   }, []);
   return (
-    <div className="h-full">
-      {articles.map((article) => (
-        <ArticlesItem key={article.id} article={article} />
-      ))}
+    <div className="flex h-full justify-center">
+      <div className=" lg:max-w-6xl">
+        {articles.map((article) => (
+          <ArticlesItem key={article.id} article={article} />
+        ))}
+      </div>
     </div>
   );
 }
