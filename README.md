@@ -1,8 +1,12 @@
+
 # NewsRead 📢📰
 
 **NewsRead** is an innovative application designed to revolutionize how you consume news. By integrating advanced technologies, NewsRead offers a seamless way to stay updated with the latest news while catering to both readers and listeners.
 Whether you're multitasking or just prefer listening over reading, NewsRead ensures you never miss out on the headlines. Its intuitive interface make it a perfect tool for modern users who value convenience and accessibility.
 Note: This is the client side code for the project. To make it work locally, please follow the setup for [newsread-server](https://github.com/anujgawde/newsread-server) and run the project in parallel.
+
+# How it looks:
+<img width="353" alt="Screenshot 2024-11-28 at 10 38 42 PM" src="https://github.com/user-attachments/assets/b3af5158-bd46-402e-8e51-c510d01af79b">
 
 ## Features 🚀
 
