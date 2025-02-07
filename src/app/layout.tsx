@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import { Bangers, Tinos } from "next/font/google";
 import BottomBar from "./components/BottomBar";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { updateVisitCount } from "@/api/articles";
 
 const bangers = Bangers({
@@ -52,8 +52,9 @@ export default function RootLayout({
         <div className="py-4 flex justify-center bg-white border-b">
           <Navbar />
         </div>
-        <div className="flex-1 overflow-y-auto">{children}</div>
-
+        <Suspense>
+          <div className="flex-1 overflow-y-auto">{children}</div>
+        </Suspense>
         <BottomBar />
       </body>
     </html>
