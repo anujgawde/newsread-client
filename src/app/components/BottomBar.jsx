@@ -2,7 +2,6 @@
 import Link from "next/link";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function BottomBar() {
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);

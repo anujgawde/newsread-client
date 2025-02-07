@@ -52,7 +52,7 @@ export const readArticle = async (id) => {
     const response = await api.post(`/articles/read-article`, { id });
     return response.data;
   } catch (error) {
-    console.error("Error fetching user data:", error);
+    console.error("Error Reading Article:", error);
     throw error;
   }
 };
@@ -61,11 +61,15 @@ export const getArticleById = async (articlId) => {
   try {
     const response = await api.get(`/articles/${articlId}`);
     return response.data;
-  } catch (e) {}
+  } catch (error) {
+    console.error("Error fetching Article:", error);
+  }
 };
 
 export const updateVisitCount = async (visitData) => {
   try {
     await api.post(`/articles/update-article-visits`, visitData);
-  } catch (e) {}
+  } catch (error) {
+    console.error("Error updating visiting count:", error);
+  }
 };
