@@ -1,22 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getLatestArticles, readArticle } from "../api/articles";
+import { getAllArticles } from "../api/articles";
 import ArticlesItem from "./components/articles/ArticlesItem";
+import { useSearchParams } from "next/navigation";
 
 export default function AllNewsPage() {
+  const params = useSearchParams();
+
   // State:
   const [articles, setArticles] = useState([]);
 
   // Functions:
-  const fetchLatestArticles = async () => {
-    const latestArticlesResult = await getLatestArticles();
+  const fetchAllArticles = async () => {
+    const latestArticlesResult = await getAllArticles(params.get("s"));
     setArticles(latestArticlesResult.articles);
   };
 
   useEffect(() => {
-    fetchLatestArticles();
-  }, []);
+    fetchAllArticles();
+  }, [params]);
+
   return (
     <div className="flex h-full justify-center">
       <div className=" lg:max-w-6xl">

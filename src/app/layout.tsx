@@ -42,7 +42,7 @@ export default function RootLayout({
 
       localStorage.removeItem("visitCounts");
     });
-  });
+  }, []);
   return (
     <html lang="en">
       <body

@@ -4,15 +4,49 @@ const api = axios.create({
   baseURL: `${process.env.SERVER_BASE_URL}/`,
 });
 
-export const getLatestArticles = async () => {
+export const getAllArticles = async (queryParams) => {
   try {
-    const response = await api.get(`/articles/get-all-articles`);
+    const response = await api.get(
+      `/articles/get-all-articles?query=${queryParams}`
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching user data:", error);
     throw error;
   }
 };
+
+// export const searchArticles = async (searchText) => {
+//   try {
+//     const response = await api.post(`/articles/search?query=${searchText}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error fetching user data:", error);
+//     throw error;
+//   }
+// };
+
+// export const getTrendingArticles = async () => {
+//   try {
+//     const response = await api.get(`/articles/get-trending-articles`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error fetching user data:", error);
+//     throw error;
+//   }
+// };
+
+// export const getLatestArticles = async () => {
+//   try {
+//     const response = await api.get(`/articles/get-latest-articles`);
+//     console.log(response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error fetching user data:", error);
+//     throw error;
+//   }
+// };
+
 export const readArticle = async (id) => {
   try {
     const response = await api.post(`/articles/read-article`, { id });
@@ -32,9 +66,6 @@ export const getArticleById = async (articlId) => {
 
 export const updateVisitCount = async (visitData) => {
   try {
-    const response = await api.post(
-      `/articles/update-article-visits`,
-      visitData
-    );
+    await api.post(`/articles/update-article-visits`, visitData);
   } catch (e) {}
 };

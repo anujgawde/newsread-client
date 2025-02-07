@@ -29,7 +29,7 @@ export default function ArticleDetailPage() {
       <>
         <ArticlesItem key={article.id} article={article} />
 
-        <div className="my-4 items-center py-2 text-sm md:text-base font-tinos px-4">
+        <div className="my-4 items-center py-2 text-sm md:text-base font-tinos px-4 text-black">
           <p className="text-lg">
             {new Date(article.datePublished).toLocaleString("en-US", {
               weekday: "long",
@@ -45,7 +45,7 @@ export default function ArticleDetailPage() {
         </div>
 
         {/* Main Content */}
-        <div className="px-4 text-justify text-sm font-tinos">
+        <div className="px-4 text-justify text-sm font-tinos text-black mb-24">
           {article.content}
         </div>
       </>
